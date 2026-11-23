@@ -1,0 +1,121 @@
+LARAVEL - GUÍA RÁPIDA DE COMANDOS
+
+1. CREAR PROYECTO
+
+composer create-project laravel/laravel nombre
+cd nombre
+code .
+
+2. EJECUTAR PROYECTO
+
+php artisan serve
+
+Abrir: http://127.0.0.1:8000
+
+3. ESTRUCTURA DE CARPETAS
+
+routes/web.php
+resources/views/
+layouts/
+partials/
+paginas/
+public/
+css/
+js/
+img/
+
+4. LAYOUT PRINCIPAL
+
+Archivo: resources/views/layouts/principal.blade.php
+
+<html>
+<head>
+    <title>@yield('titulo')</title>
+</head>
+<body>
+    @include('partials.menu')
+
+    @yield('contenido')
+
+    @include('partials.footer')
+</body>
+</html>
+
+5. CREAR UNA VISTA
+
+Archivo: resources/views/paginas/inicio.blade.php
+
+@extends('layouts.principal')
+
+@section('titulo', 'Inicio')
+
+@section('contenido')
+    <h1>Bienvenido</h1>
+@endsection
+
+6. CREAR RUTAS
+
+Archivo: routes/web.php
+
+use Illuminate\Support\Facades\Route;
+
+Route::view('/', 'paginas.inicio')->name('inicio');
+Route::view('/nosotros', 'paginas.nosotros')->name('nosotros');
+Route::view('/servicios', 'paginas.servicios')->name('servicios');
+Route::view('/contacto', 'paginas.contacto')->name('contacto');
+
+7. ENLACES DEL MENÚ
+
+<a href="{{ route('inicio') }}">Inicio</a>
+<a href="{{ route('nosotros') }}">Nosotros</a>
+<a href="{{ route('servicios') }}">Servicios</a>
+<a href="{{ route('contacto') }}">Contacto</a>
+
+8. IMPLEMENTAR PLANTILLA DESCARGADA
+
+9. Copiar CSS, JS e imágenes a public/.
+
+10. Copiar el HTML principal al layout.
+
+11. Reemplazar contenido variable por @yield.
+
+12. Crear las vistas Blade.
+
+13. Utilizar @extends y @section.
+
+14. Cambiar enlaces por route().
+
+15. Cambiar recursos por asset().
+
+Ejemplo:
+
+<link rel="stylesheet" href="{{ asset('css/style.css') }}">
+<img src="{{ asset('img/logo.png') }}">
+
+9. COMANDOS ÚTILES
+
+php artisan serve
+php artisan route:list
+php artisan route:clear
+
+10. RECORDATORIO BLADE
+
+@extends()    = Heredar plantilla.
+@section()    = Crear sección.
+@endsection     = Cerrar sección.
+@yield()      = Reservar espacio.
+@include()    = Insertar otra vista.
+route()       = Generar enlaces.
+asset()       = Cargar CSS, JS e imágenes.
+view()        = Mostrar una vista.
+
+ORDEN PARA EL EXAMEN:
+
+Crear proyecto
+→ Ejecutar servidor
+→ Copiar plantilla
+→ Crear layout
+→ Crear vistas
+→ Mapear rutas
+→ Conectar menú
+→ Probar navegación.
